@@ -11,5 +11,10 @@ RUN cp ./build/libs/myapp-1.0.0.jar app.jar
 
 ENV GRPC_XDS_BOOTSTRAP=./bootstrap.json
 
+ENV JAVA_OPTS="-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005"
+
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
+CMD ["hello world","xds:///echo:7070"]
 # Run java with the jar file when the container starts up
-CMD ["java","-jar","app.jar","hello world","xds:///echo:7070"]
+# CMD ["java","-jar","app.jar","hello world","xds:///echo:7070"]
