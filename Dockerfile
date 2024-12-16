@@ -9,5 +9,7 @@ COPY . /build
 # copy the JAR file into the root and rename
 RUN cp ./build/libs/myapp-1.0.0.jar app.jar
 
+ENV GRPC_XDS_BOOTSTRAP=./bootstrap.json
+
 # Run java with the jar file when the container starts up
 CMD ["java","-jar","app.jar","hello world","xds:///echo:7070"]
